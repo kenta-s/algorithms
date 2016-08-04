@@ -6,18 +6,16 @@
 
 require 'complex'
 
-MAX_NUM = 1000
-
-search_list = (2..MAX_NUM).to_a
-first_of_search_list = search_list.shift
-prime_numbers = []
-
-while Math.sqrt(MAX_NUM) > first_of_search_list
-  prime_numbers << first_of_search_list
-  search_list.delete_if{|num| num % first_of_search_list == 0}
-  first_of_search_list = search_list.first
+def sieve_of_eratosthenes(max_num)
+  search_list = (2..max_num).to_a
+  first_of_search_list = search_list.shift
+  prime_numbers = []
+  while Math.sqrt(max_num) > first_of_search_list
+    prime_numbers << first_of_search_list
+    search_list.delete_if{|num| num % first_of_search_list == 0}
+    first_of_search_list = search_list.first
+  end
+  prime_numbers + search_list
 end
 
-prime_numbers = prime_numbers + search_list
-
-puts prime_numbers
+puts sieve_of_eratosthenes(1000)
