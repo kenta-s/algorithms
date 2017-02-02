@@ -3,6 +3,23 @@
 #
 # execute:
 #   $ ruby euclidean_algorithm.rb
+#
+
+require 'minitest/autorun'
+
+class TestEuclideanAlgorithm < Minitest::Test
+  def test_euclidean_algorithm_returns_greatest_common_divisor
+    assert_equal 6, euclidean_algorithm(12, 6)
+    assert_equal 2, euclidean_algorithm(10, 8)
+    assert_equal 7, euclidean_algorithm(21, 14)
+  end
+
+  def test_euclidean_algorithm_returns_first_arg_if_second_arg_is_zero
+    assert_equal 12, euclidean_algorithm(12, 0)
+    assert_equal 10, euclidean_algorithm(10, 0)
+    assert_equal 21, euclidean_algorithm(21, 0)
+  end
+end
 
 def euclidean_algorithm(a, b)
   return a if b == 0
@@ -12,5 +29,3 @@ def euclidean_algorithm(a, b)
   end
   b
 end
-
-puts euclidean_algorithm(138, 3)
