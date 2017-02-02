@@ -1,19 +1,6 @@
 require 'minitest/autorun'
 require 'complex'
 
-def sieves_of_eratosthenes(n)
-  raise ArgumentError, "parameter must be more than 3" if n <= 3
-  array = (2..n).to_a
-  prime_numbers = []
-  first_elem = array.shift
-  while  Math.sqrt(n) >= first_elem
-    prime_numbers << first_elem
-    array.delete_if {|elem| elem % first_elem == 0}
-    first_elem = array.first
-  end
-  prime_numbers + array
-end
-
 class TestErat < Minitest::Test
   def test_sieves_of_eratosthenes
     assert_equal [2,3,5,7], sieves_of_eratosthenes(9)
@@ -27,4 +14,17 @@ class TestErat < Minitest::Test
       sieves_of_eratosthenes(3)
     end
   end
+end
+
+def sieves_of_eratosthenes(n)
+  raise ArgumentError, "parameter must be more than 3" if n <= 3
+  array = (2..n).to_a
+  prime_numbers = []
+  first_elem = array.shift
+  while  Math.sqrt(n) >= first_elem
+    prime_numbers << first_elem
+    array.delete_if {|elem| elem % first_elem == 0}
+    first_elem = array.first
+  end
+  prime_numbers + array
 end
