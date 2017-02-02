@@ -1,5 +1,19 @@
 require 'minitest/autorun'
 
+class TestMergesort < Minitest::Test
+  def test_mergesort_with_integers
+    array = (1..10).to_a.shuffle
+    expected_array = [1,2,3,4,5,6,7,8,9,10]
+    assert_equal expected_array, mergesort(array)
+  end
+
+  def test_mergesort_with_alphabets
+    array = ("a".."g").to_a.shuffle
+    expected_array = ["a", "b", "c", "d", "e", "f", "g"]
+    assert_equal expected_array, mergesort(array)
+  end
+end
+
 def mergesort(array)
   return array if array.size == 1
 
@@ -27,19 +41,3 @@ def mergesort(array)
 
   new_array
 end
-
-
-class TestMergesort < Minitest::Test
-  def test_mergesort_with_integers
-    array = (1..10).to_a.shuffle
-    expected_array = [1,2,3,4,5,6,7,8,9,10]
-    assert_equal expected_array, mergesort(array)
-  end
-
-  def test_mergesort_with_alphabets
-    array = ("a".."z").to_a.shuffle
-    expected_array = ("a".."z").to_a
-    assert_equal expected_array, mergesort(array)
-  end
-end
-
